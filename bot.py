@@ -27,6 +27,26 @@ def any_msg(message):
         cat1Markup.add(cat1Q1, cat1Q2, cat1Q3, cat1Q4, cat1Q5)
         cat1Markup.row(types.KeyboardButton('Назад'))
         bot.send_message(message.chat.id, 'Категория 1', reply_markup=cat1Markup)
+
+    elif message.text == 'Категория 2':
+        cat2Markup = types.ReplyKeyboardMarkup(row_width=3, resize_keyboard=True)
+        cat2Q1 = types.KeyboardButton('Кат 2, Вопр 1')
+        cat2Q2 = types.KeyboardButton('Кат 2, Вопр 2')
+        cat2Q3 = types.KeyboardButton('Кат 2, Вопр 3')
+        cat2Markup.add(cat2Q1, cat2Q2, cat2Q2)
+        cat2Markup.row(types.KeyboardButton('Назад'))
+        bot.send_message(message.chat.id, 'Категория 2', reply_markup=cat2Markup)
+
+    elif message.text == 'Категория 3':
+        cat3Markup = types.ReplyKeyboardMarkup(row_width=3, resize_keyboard=True)
+        cat3Q1 = types.KeyboardButton('Кат 3, Вопр 1')
+        cat3Q2 = types.KeyboardButton('Кат 3, Вопр 2')
+        cat3Q3 = types.KeyboardButton('Кат 3, Вопр 3')
+        cat3Q4 = types.KeyboardButton('Кат 3, Вопр 4')
+        cat3Markup.add(cat3Q1, cat3Q2, cat3Q3, cat3Q4)
+        cat3Markup.row(types.KeyboardButton('Назад'))
+        bot.send_message(message.chat.id, 'Категория 3', reply_markup=cat3Markup)
+
     elif message.text == 'Кат 1, Вопр 1':
         bot.send_message(message.chat.id, 'Ответ на вопрос 1 категории 1')
     elif message.text == 'Кат 1, Вопр 2':
@@ -37,9 +57,26 @@ def any_msg(message):
         bot.send_message(message.chat.id, 'Ответ на вопрос 4 категории 1')
     elif message.text == 'Кат 1, Вопр 5':
         bot.send_message(message.chat.id, 'Ответ на вопрос 5 категории 1')
+
+    elif message.text == 'Кат 2, Вопр 1':
+        bot.send_message(message.chat.id, 'Ответ на вопрос 1 категории 2')
+    elif message.text == 'Кат 2, Вопр 2':
+        bot.send_message(message.chat.id, 'Ответ на вопрос 2 категории 2')
+    elif message.text == 'Кат 2, Вопр 3':
+        bot.send_message(message.chat.id, 'Ответ на вопрос 3 категории 2')
+
+    elif message.text == 'Кат 3, Вопр 1':
+        bot.send_message(message.chat.id, 'Ответ на вопрос 1 категории 3')
+    elif message.text == 'Кат 3, Вопр 2':
+        bot.send_message(message.chat.id, 'Ответ на вопрос 2 категории 3')
+    elif message.text == 'Кат 3, Вопр 3':
+        bot.send_message(message.chat.id, 'Ответ на вопрос 3 категории 3')
+    elif message.text == 'Кат 3, Вопр 4':
+        bot.send_message(message.chat.id, 'Ответ на вопрос 4 категории 3')
+
     elif message.text == 'Назад':
         bot.send_message(message.chat.id, 'Главное меню', reply_markup=mainMarkup)
     else :
-        bot.send_message(message.chat.id, "Выберете категорию:", reply_markup=mainMarkup)
+        bot.send_message(message.chat.id, "Выберите категорию:", reply_markup=mainMarkup)
 
 bot.polling(none_stop=True)
