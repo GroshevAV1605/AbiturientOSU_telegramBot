@@ -33,7 +33,7 @@ def any_msg(message):
         cat2Q1 = types.KeyboardButton('Кат 2, Вопр 1')
         cat2Q2 = types.KeyboardButton('Кат 2, Вопр 2')
         cat2Q3 = types.KeyboardButton('Кат 2, Вопр 3')
-        cat2Markup.add(cat2Q1, cat2Q2, cat2Q2)
+        cat2Markup.add(cat2Q1, cat2Q2, cat2Q3)
         cat2Markup.row(types.KeyboardButton('Назад'))
         bot.send_message(message.chat.id, 'Правила приема', reply_markup=cat2Markup)
 
