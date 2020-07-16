@@ -8,11 +8,15 @@ load_dotenv()
 token = os.getenv("TG_TOKEN")
 bot = telebot.TeleBot(token)
 
-CategoriesMarkup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-QueCat1 = types.KeyboardButton('Cat1')
-QueCat2 = types.KeyboardButton('Cat2')
-QueCat3 = types.KeyboardButton('Cat3')
-CategoriesMarkup.row(QueCat1, QueCat2, QueCat3)
+CategoriesMarkup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+QueCat1 = types.KeyboardButton('Обучение')
+QueCat2 = types.KeyboardButton('Льготы')
+QueCat3 = types.KeyboardButton('Подача документов')
+QueCat4 = types.KeyboardButton('Выбор направления')
+QueCat5 = types.KeyboardButton('Вступительные испытания')
+QueCat6 = types.KeyboardButton('Другие вопросы')
+
+CategoriesMarkup.add(QueCat1, QueCat2, QueCat3, QueCat4, QueCat5, QueCat6)
 
 @bot.message_handler(commands=['help', 'start'])
 def send_welcome(message):
@@ -21,7 +25,64 @@ def send_welcome(message):
 
 @bot.message_handler(content_types=["text"])
 def any_msg(message):
+
     defaultMarkup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+
+    if message.text == 'Обучение':
+        for item in questionsDict:
+            if item['category'] == 'education':
+                itemBtn = types.KeyboardButton(item['question'])
+                defaultMarkup.add(itemBtn)
+        defaultMarkup.add(types.KeyboardButton('Главное меню'))
+        bot.send_message(message.chat.id, 'Вопросы, связанные с обучением', reply_markup=defaultMarkup)
+        return
+    elif message.text == 'Льготы':
+        for item in questionsDict:
+            if item['category'] == 'privileges':
+                itemBtn = types.KeyboardButton(item['question'])
+                defaultMarkup.add(itemBtn)
+        defaultMarkup.add(types.KeyboardButton('Главное меню'))
+        bot.send_message(message.chat.id, 'Вопросы, связанные с льготами', reply_markup=defaultMarkup)
+        return
+    elif message.text == 'Подача документов':
+        for item in questionsDict:
+            if item['category'] == 'docs':
+                itemBtn = types.KeyboardButton(item['question'])
+                defaultMarkup.add(itemBtn)
+        defaultMarkup.add(types.KeyboardButton('Главное меню'))
+        bot.send_message(message.chat.id, 'Вопросы, связанные с подачей документов', reply_markup=defaultMarkup)
+        return
+    elif message.text == 'Выбор направления':
+        for item in questionsDict:
+            if item['category'] == 'choice':
+                itemBtn = types.KeyboardButton(item['question'])
+                defaultMarkup.add(itemBtn)
+        defaultMarkup.add(types.KeyboardButton('Главное меню'))
+        bot.send_message(message.chat.id, 'Вопросы, связанные с выбором направления', reply_markup=defaultMarkup)
+        return
+    elif message.text == 'Вступительные испытания':
+        for item in questionsDict:
+            if item['category'] == 'test':
+                itemBtn = types.KeyboardButton(item['question'])
+                defaultMarkup.add(itemBtn)
+        defaultMarkup.add(types.KeyboardButton('Главное меню'))
+        bot.send_message(message.chat.id, 'Вопросы, связанные с вступительными испытаниями', reply_markup=defaultMarkup)
+        return
+    elif message.text == 'Другие вопросы':
+        for item in questionsDict:
+            if item['category'] == 'other':
+                itemBtn = types.KeyboardButton(item['question'])
+                defaultMarkup.add(itemBtn)
+        defaultMarkup.add(types.KeyboardButton('Главное меню'))
+        bot.send_message(message.chat.id, 'Остальные вопросы', reply_markup=defaultMarkup)
+        return
+    elif message.text == 'Главное меню':
+        bot.send_message(message.chat.id, 'Категории:', reply_markup=CategoriesMarkup)
+        return
+
+
+
+
 
     i= 0
     for item in questionsDict:
