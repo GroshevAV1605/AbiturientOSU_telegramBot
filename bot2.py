@@ -77,7 +77,7 @@ def any_msg(message):
         bot.send_message(message.chat.id, 'Остальные вопросы', reply_markup=defaultMarkup)
         return
     elif message.text == 'Главное меню':
-        bot.send_message(message.chat.id, 'Категории:', reply_markup=CategoriesMarkup)
+        bot.reply_to(message, 'Категории:', reply_markup=CategoriesMarkup)
         return
 
 
