@@ -25,7 +25,7 @@ def send_welcome(message):
 
 @bot.message_handler(content_types=["text"])
 def any_msg(message):
-
+    
     defaultMarkup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 
     if message.text == '🎓 Обучение':
@@ -80,7 +80,6 @@ def any_msg(message):
         bot.reply_to(message, 'Категории:', reply_markup=CategoriesMarkup)
         return
 
-
     i= 0
     for item in questionsDict:
         if item['question'] == message.text:
@@ -88,7 +87,7 @@ def any_msg(message):
             return
 
         for keyword in item['keywords']:
-            if keyword in message.text:
+            if keyword in message.text.lower():
                 itemBtn = types.KeyboardButton(item['question'])
                 defaultMarkup.add(itemBtn)
                 i+=1
