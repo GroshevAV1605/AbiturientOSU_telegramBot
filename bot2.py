@@ -57,7 +57,7 @@ def any_msg(message):
             if item['category'] == 'choice':
                 itemBtn = types.KeyboardButton(item['question'])
                 defaultMarkup.add(itemBtn)
-        defaultMarkup.add(types.KeyboardButton('Главное меню'))
+        defaultMarkup.add(types.KeyboardButton('📖 Главное меню'))
         bot.send_message(message.chat.id, 'Вопросы, связанные с выбором направления', reply_markup=defaultMarkup)
         return
     elif message.text == '🧾 Вступительные испытания':
